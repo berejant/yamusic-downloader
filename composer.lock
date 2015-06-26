@@ -1,0 +1,47 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "e2336aa14f074cf8b0c2114cec25a90c",
+    "packages": [
+        {
+            "name": "pear-pear.php.net/MP3_Id",
+            "version": "1.2.2",
+            "dist": {
+                "type": "file",
+                "url": "https://pear.php.net/get/MP3_Id-1.2.2.tgz",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "php": ">=4.0.0.0"
+            },
+            "replace": {
+                "pear-pear/mp3_id": "== 1.2.2.0"
+            },
+            "type": "pear-library",
+            "autoload": {
+                "classmap": [
+                    ""
+                ]
+            },
+            "include-path": [
+                "/"
+            ],
+            "license": [
+                "LGPL"
+            ],
+            "description": "The class offers methods for reading and\nwriting information tags (version 1) in MP3 files."
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

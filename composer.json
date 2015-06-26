@@ -1,0 +1,21 @@
+{
+    "name": "berejant/yamusic-downloader",
+    "authors": [
+        {
+            "name": "Anton Berezhnoj",
+            "email": "berejant@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "pear",
+            "url": "https://pear.php.net"
+        }
+    ],
+    "require": {
+        "pear-pear.php.net/mp3_id": "^1.2"
+    },
+    "autoload": {
+        "files": ["Http.class.php"]
+    }
+}
