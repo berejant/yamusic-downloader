@@ -5,4 +5,4 @@
 > http://%path_to_current_dir%/download.php/%playlist_url%
 
 ## Example:
-> http://local/yamusicDownoloader/download.php/http://music.yandex.ru/users/Muz-winamp/playlists/1085
+> http://example.com/yamusicDownoloader/download.php/http://music.yandex.ru/users/Muz-winamp/playlists/1085
