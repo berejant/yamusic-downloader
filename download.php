@@ -106,12 +106,12 @@ $http->timeout = 60;
 
 // скачивай трек за треком
 foreach ( $tracks as $track ) {
-
     $artist =  $track['artists'][0]['name'];
     $title = $track['title'];
     $mp3_name =  $artist . ' - ' . $title . '.mp3';
 
-    echo '<tr><td>', $index, '</td><td>', $mp3_name, PHP_EOL, '</td>';
+    echo '<tr><td>', $index, '</td><td>', $mp3_name, '</td>', PHP_EOL;
+    flush();
 
     $response = $http->get( 'http://storage.mds.yandex.net/download-info/' . $track['storageDir'] . '/2?format=json' );
 
@@ -119,7 +119,6 @@ foreach ( $tracks as $track ) {
         echo '<td>Bad http code: ',  $http->info['http_code'], '</td><td></td></tr>';
         continue;
     }
-
 
     $json = json_decode( $response, true );
 
@@ -136,32 +135,18 @@ foreach ( $tracks as $track ) {
     $n = md5( 'XGRlBW9FXlekgbPrRHuSiA' . substr( $path, 1 ) . $s );
 
     $mp3_url = 'http://' . $host . '/get-mp3/' . $n . '/' . $ts . $path;
-
-
     $mp3_name = str_ireplace($denied, '_', $mp3_name);
 
     $filename = MP3_DIR . $playlist_title . '/' . $mp3_name;
-
-    $exists = file_exists( $filename );
-
-    if( $exists ) {
-        if( !filesize( $filename ) ) {
-            unlink($filename);
-            $exists = false;
-        }
-    }
-
-    $success = false;
+    $exists = file_exists($filename) && filesize($filename);
 
     if ( !$exists )  {
         $response = $http->get( $mp3_url );
-
         if($response && file_put_contents( $filename, $response )) {
             echo '<td>downloaded</td>';
         } else {
             echo '<td style="color:red;">failed</td>';
         }
-
         unset($response);
     } else {
         echo '<td>exists</td>';
@@ -175,16 +160,12 @@ foreach ( $tracks as $track ) {
             echo '<td>Write ID3 failed:', $e->getMessage(), '</td>';
         }
     }
-
-
     echo '</tr>';
-
     $index++;
-
     $totalDuration += $track['duration'];
  };
 
- echo '</table>', PHP_EOL;
+echo '</table>', PHP_EOL;
 
 // определяем общую длительность звучания
 $totalDuration = floor($totalDuration/1000);
